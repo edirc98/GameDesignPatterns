@@ -8,6 +8,14 @@ public abstract class Command
 
 
 #region COMMANDS
+public class MoveForward : Command
+{
+    public override void Execute(Animator anim)
+    {
+        Debug.Log("Command Execute: Move Forward");
+        anim.SetTrigger("isWalking");
+    }
+}
 public class PerformJump : Command
 {
     public override void Execute(Animator anim)
