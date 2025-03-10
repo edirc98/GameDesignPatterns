@@ -46,23 +46,23 @@ public class InputHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            keySpace.Execute(actorAnim);
+            keySpace.Execute(actorAnim,true);
             oldCommands.Add(keySpace);
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
-            keyQ.Execute(actorAnim);
+            keyQ.Execute(actorAnim, true);
             oldCommands.Add(keyQ);
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            keyE.Execute(actorAnim);
+            keyE.Execute(actorAnim, true);
             oldCommands.Add(keyE);
         }
         //Movement
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            upArrow.Execute(actorAnim);
+            upArrow.Execute(actorAnim, true);
             oldCommands.Add(upArrow);
         }
 
@@ -98,7 +98,7 @@ public class InputHandler : MonoBehaviour
         if(oldCommands.Count > 0)
         {
             Command c = oldCommands[oldCommands.Count - 1];
-            c.Execute(actorAnim);
+            c.Execute(actorAnim, false);
             oldCommands.RemoveAt(oldCommands.Count - 1);
         }
     }
@@ -108,8 +108,8 @@ public class InputHandler : MonoBehaviour
         isReplaying = true; 
         for(int  i = 0; i < oldCommands.Count; i++)
         {
-            oldCommands[i].Execute(actorAnim);
-            yield return new WaitForSeconds(1f); //Idealy shoukd wait until animation is completed
+            oldCommands[i].Execute(actorAnim, true);
+            yield return new WaitForSeconds(1.0f); //Idealy shoukd wait until animation is completed
         }
         isReplaying = false;
     }
