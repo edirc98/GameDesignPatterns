@@ -17,7 +17,6 @@ public class CreateLandscapePrefabs : MonoBehaviour
     }
     #endregion
 
-
     #region CUSTOM METHODS
     public void GenerateLandscape()
     {
