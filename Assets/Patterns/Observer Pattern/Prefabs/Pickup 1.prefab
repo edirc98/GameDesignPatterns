@@ -103,7 +103,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -124,4 +124,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PickupCreated: {fileID: 11400000, guid: 7f2d30fe4a771dc4e98c4c37d5535ba2, type: 2}
+  PickupCollected: {fileID: 11400000, guid: ec2c35f70026a7245bc0cc46b6d10509, type: 2}
   PickupIcon: {fileID: 848273002922514072, guid: 6e7adf3f6dcb42541ba93f2b34b497a2, type: 3}
