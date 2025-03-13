@@ -12,7 +12,6 @@ public class RadarObject
 public class Radar : MonoBehaviour
 {
     public Transform playerPos;
-    public Image icon; 
 
     float mapScale = 2.0f;
 
@@ -69,7 +68,7 @@ public class Radar : MonoBehaviour
     public void PickUpSpawned(GameObject go)
     {
         Debug.Log("Pickup spawned in pos:" + go.transform.position);
-        RegisterRadarObject(go,icon);
+        RegisterRadarObject(go,go.GetComponent<Pickup>().PickupIcon);
     }
 
 }

@@ -1,16 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PickUpSpawner : MonoBehaviour
 {
     #region VARIABLES
-    [SerializeField] private GameObject _pickupObject;
+    [SerializeField] private List<GameObject> _pickupObjects;
     [SerializeField] private GameObject _spawnPlane;
     [SerializeField] private float _maxObjects;
 
     private float _planeSize;
-
-    [Header("Events")]
-    public Event PickUpSpawned;
 
     #endregion
 
@@ -26,13 +24,13 @@ public class PickUpSpawner : MonoBehaviour
     #region CUSTOM METHODS
     private void CreatePickup()
     {
-        int xpos = (int)Random.Range(-_planeSize,_planeSize);
+        int pickupObject = (int)Random.Range(0, _pickupObjects.Count);
+        int xpos = (int)Random.Range(-_planeSize, _planeSize);
         int zpos = (int)Random.Range(-_planeSize, _planeSize);
 
         Vector3 pickUpPos = new Vector3(xpos, 0.5f, zpos);
 
-        GameObject pickup = Instantiate(_pickupObject,pickUpPos,Quaternion.identity,transform);
-        PickUpSpawned.Ocurred(pickup);
+        GameObject pickup = Instantiate(_pickupObjects[pickupObject], pickUpPos,Quaternion.identity,transform);
     }
 
     private void SpawnPickups()

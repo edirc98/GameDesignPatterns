@@ -825,10 +825,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c0c31c10817fd40b86eae5c753fabf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pickupObject: {fileID: 8115697697896758356, guid: 421d9f11f47c6fe4c9472f1ff028bccc, type: 3}
+  _pickupObjects:
+  - {fileID: 8115697697896758356, guid: 421d9f11f47c6fe4c9472f1ff028bccc, type: 3}
+  - {fileID: 8115697697896758356, guid: e452dfc2b3976624c8fbe4aeea12226f, type: 3}
   _spawnPlane: {fileID: 728101287}
   _maxObjects: 10
-  PickUpSpawned: {fileID: 11400000, guid: 7f2d30fe4a771dc4e98c4c37d5535ba2, type: 2}
 --- !u!1 &1883479707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,7 +1056,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {fileID: 133150886}
-  icon: {fileID: 848273002922514072, guid: 6e7adf3f6dcb42541ba93f2b34b497a2, type: 3}
 --- !u!114 &2037566587
 MonoBehaviour:
   m_ObjectHideFlags: 0
