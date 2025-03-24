@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using TMPro;
+using System.Collections.Generic;
+using System.Linq;
 
 public class AgentStateMachine : StateManager<AgentStateMachine.EAgentState>
 {
@@ -14,10 +16,17 @@ public class AgentStateMachine : StateManager<AgentStateMachine.EAgentState>
     #endregion
 
     #region AGENT VARIABLES
+    [Header("Agent Properties")]
+    [SerializeField] private float speed; 
+    [Header("Agent Components")]
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private Collider _rootCollider;
     [SerializeField] private TextMeshPro _stateText;
+    [SerializeField] private GameObject _bed; 
+    [SerializeField] private List<GameObject> _waypoints;
+    private int _currentWaypointIndex = 0; 
     #endregion
+
     #region AGENT CONTEXT
     [SerializeField] private AgentContext _context; 
     #endregion
@@ -27,7 +36,8 @@ public class AgentStateMachine : StateManager<AgentStateMachine.EAgentState>
     {
         GetAgentProperties();
         ValidateProperties();
-        _context = new AgentContext(_rigidbody, _rootCollider, _stateText);
+        GetAgentWaypoints();
+        _context = new AgentContext(speed,_currentWaypointIndex,_rigidbody, _rootCollider, _stateText, _waypoints);
         InitAgentStates();
     }
     #endregion
@@ -38,12 +48,19 @@ public class AgentStateMachine : StateManager<AgentStateMachine.EAgentState>
         _rigidbody = GetComponent<Rigidbody>();
         _rootCollider = GetComponent<Collider>();
         _stateText = GetComponentInChildren<TextMeshPro>();
+        _bed = GameObject.Find("Bed");
+    }
+    private void GetAgentWaypoints()
+    {
+        GameObject.FindGameObjectsWithTag("Waypoint", _waypoints);
     }
     private void ValidateProperties()
     {
         Assert.IsNotNull(_rigidbody, "Rigidbody is null, Check if was assigned!");
         Assert.IsNotNull(_rootCollider, "Collider is null, Check if was assigned!");
         Assert.IsNotNull(_stateText, "State Text i null, Check if was assigned!");
+        Assert.IsNotNull(_waypoints, "No Waypoints found, value is null, Check if was assigned!");
+
     }
 
     private void InitAgentStates()
