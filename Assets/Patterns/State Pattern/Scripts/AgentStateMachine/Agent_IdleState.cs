@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class Agent_IdleState : AgentState
 {
+    #region STATE VARIABLES
+    private float _elapsedTime;
+    private float _timeInIdle = 3.0f;
+    #endregion
     #region STATE CONSTRUCTOR
     public Agent_IdleState(AgentContext context, AgentStateMachine.EAgentState EState) : base(context, EState)
     {
@@ -12,22 +16,30 @@ public class Agent_IdleState : AgentState
     #region STATE METHODS
     public override void EnterState()
     {
-        Debug.Log("Enter Agent Idle State");
+        Debug.Log("Enter IDLE State");
+        _elapsedTime = 0.0f;
         Context.Agent_StateText = StateKey.ToString();
     }
     public override void UpdateState()
     {
-        Debug.Log("Update Agent Idle State");
+        //The agent stays 10 seconds on Idle state befor going to Patrol State
+        _elapsedTime += Time.deltaTime;
     }
 
     public override void ExitState()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Exiting IDLE State");
     }
 
     public override AgentStateMachine.EAgentState GetNextState()
     {
-        return StateKey;
+        if(_elapsedTime >= _timeInIdle)
+        {
+            
+            return AgentStateMachine.EAgentState.PATROL;
+        }
+        return StateKey; 
+ 
     }
 
     public override void OnTriggerEnter(Collider other)

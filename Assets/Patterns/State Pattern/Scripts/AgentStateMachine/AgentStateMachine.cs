@@ -37,7 +37,7 @@ public class AgentStateMachine : StateManager<AgentStateMachine.EAgentState>
         GetAgentProperties();
         ValidateProperties();
         GetAgentWaypoints();
-        _context = new AgentContext(speed,_currentWaypointIndex,_rigidbody, _rootCollider, _stateText, _waypoints);
+        _context = new AgentContext(speed,_currentWaypointIndex,transform,_rigidbody, _rootCollider, _stateText, _waypoints);
         InitAgentStates();
     }
     #endregion
@@ -67,8 +67,8 @@ public class AgentStateMachine : StateManager<AgentStateMachine.EAgentState>
     {
         //Adds the states to the StateManager "States" Dictionary and sets an initial state
         States.Add(EAgentState.IDLE, new Agent_IdleState(_context, EAgentState.IDLE));
-        States.Add(EAgentState.PATROL, new Agent_IdleState(_context, EAgentState.PATROL));
-        States.Add(EAgentState.SLEEP, new Agent_IdleState(_context, EAgentState.SLEEP));
+        States.Add(EAgentState.PATROL, new Agent_PatrolState(_context, EAgentState.PATROL));
+        States.Add(EAgentState.SLEEP, new Agent_SleepState(_context, EAgentState.SLEEP));
 
         CurrentState = States[EAgentState.IDLE];
     }

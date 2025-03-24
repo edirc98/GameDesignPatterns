@@ -21,6 +21,7 @@ public abstract class StateManager<EState> : MonoBehaviour where EState : Enum
     private void Update()
     {
         EState nextStateKey = CurrentState.GetNextState();
+
         if (!IsTransitioningState && nextStateKey.Equals(CurrentState.StateKey))
         {
             CurrentState.UpdateState();
@@ -29,6 +30,20 @@ public abstract class StateManager<EState> : MonoBehaviour where EState : Enum
         {
             TransitionToNextState(nextStateKey);
         }
+    }
+    #endregion
+
+    #region TRANSITION METHOD
+    private void TransitionToNextState(EState stateKey)
+    {
+        Debug.Log("Chaning to state: " + stateKey.ToString());
+        IsTransitioningState = true;
+        CurrentState.ExitState();
+
+        CurrentState = States[stateKey];
+
+        CurrentState.EnterState();
+        IsTransitioningState = false;
     }
     #endregion
 
@@ -47,15 +62,6 @@ public abstract class StateManager<EState> : MonoBehaviour where EState : Enum
     }
     #endregion
 
-    #region TRANSITION METHOD
-    private void TransitionToNextState(EState stateKey)
-    {
-        IsTransitioningState = true;
-        CurrentState.ExitState();
-        CurrentState = States[stateKey];
-        CurrentState.EnterState();
-        IsTransitioningState = false;
-    }
-    #endregion
+    
 
 }

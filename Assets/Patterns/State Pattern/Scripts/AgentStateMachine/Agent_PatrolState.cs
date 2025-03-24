@@ -12,11 +12,16 @@ public class Agent_PatrolState : AgentState
     #region STATE METHODS
     public override void EnterState()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Enter PATROL State");
+        Context.Agent_StateText = StateKey.ToString();
+        Context.Agent_Rigidbody.linearVelocity = Context.Agent_Transform.forward * Context.Agent_Speed;
     }
     public override void UpdateState()
     {
-        throw new System.NotImplementedException();
+        Vector3 lookDir = (Context.Agent_Waypoint[Context.Agent_WaypointIndex].transform.position - Context.Agent_Transform.position).normalized;
+        Context.Agent_Transform.forward = Vector3.Lerp(Context.Agent_Transform.forward, new Vector3(lookDir.x, 0, lookDir.z),Time.deltaTime);
+
+        Context.Agent_Rigidbody.linearVelocity = Context.Agent_Transform.forward * Context.Agent_Speed;
     }
 
     public override void ExitState()
