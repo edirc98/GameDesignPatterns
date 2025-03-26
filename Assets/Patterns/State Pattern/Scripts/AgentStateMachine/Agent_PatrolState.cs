@@ -17,7 +17,7 @@ public class Agent_PatrolState : AgentState
     public override void EnterState()
     {
         Context.Agent_StateText = StateKey.ToString();
-        Context.Agent_Rigidbody.linearVelocity = Context.Agent_Transform.forward * Context.Agent_Speed;
+        //Context.Agent_Rigidbody.linearVelocity = Context.Agent_Transform.forward * Context.Agent_Speed;
         
     }
     public override void UpdateState()

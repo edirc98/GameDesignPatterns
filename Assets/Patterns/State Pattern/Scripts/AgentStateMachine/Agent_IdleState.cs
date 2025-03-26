@@ -36,11 +36,14 @@ public class Agent_IdleState : AgentState
     {
         if(_elapsedTime >= _timeInIdle)
         {
-            
+            //After IDLE state, there is a chance to go to sleep state. 
+            if (Random.Range(0, 100) < 25)
+            {
+                return AgentStateMachine.EAgentState.SLEEP;
+            }
             return AgentStateMachine.EAgentState.PATROL;
         }
         return StateKey; 
- 
     }
 
     public override void OnTriggerEnter(Collider other)

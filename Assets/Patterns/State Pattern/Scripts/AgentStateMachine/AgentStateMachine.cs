@@ -38,7 +38,7 @@ public class AgentStateMachine : StateManager<AgentStateMachine.EAgentState>
         GetAgentProperties();
         ValidateProperties();
         GetAgentWaypoints();
-        _context = new AgentContext(speed,_currentWaypointIndex,transform,_rigidbody, _rootCollider, _stateText, _waypoints);
+        _context = new AgentContext(speed,_currentWaypointIndex,transform,_rigidbody, _rootCollider, _stateText, _waypoints, _bed.transform);
         InitAgentStates();
     }
     #endregion
