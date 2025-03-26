@@ -60,8 +60,8 @@ public class Agent_SleepState : AgentState
     {
         if(_startedSleep && _finishedSleep)
         {
-            //Once finished sleeped goes back to IDLE state
-            return AgentStateMachine.EAgentState.IDLE;
+            //Once finished sleeped goes back to PATROL state
+            return AgentStateMachine.EAgentState.PATROL;
         }
         return StateKey;
     }
