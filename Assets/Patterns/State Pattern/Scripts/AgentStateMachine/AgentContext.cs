@@ -23,7 +23,7 @@ public class AgentContext
     public Rigidbody Agent_Rigidbody { get { return _rigidbody; } }
     public Collider Agent_Collider { get { return _rootCollider; } }
     public string Agent_StateText { get { return _stateText.text; } set { _stateText.text = value; }}
-    public List<GameObject> Agent_Waypoint { get { return _waypoints; } }
+    public List<GameObject> Agent_Waypoints { get { return _waypoints; } }
 
     #endregion
 

@@ -17,7 +17,8 @@ public class AgentStateMachine : StateManager<AgentStateMachine.EAgentState>
 
     #region AGENT VARIABLES
     [Header("Agent Properties")]
-    [SerializeField] private float speed; 
+    [SerializeField] private float speed;
+    [SerializeField] private Transform _waypointsParent;
     [Header("Agent Components")]
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private Collider _rootCollider;
@@ -52,7 +53,12 @@ public class AgentStateMachine : StateManager<AgentStateMachine.EAgentState>
     }
     private void GetAgentWaypoints()
     {
-        GameObject.FindGameObjectsWithTag("Waypoint", _waypoints);
+        _waypointsParent = GameObject.Find("Waypoints").transform;
+
+       foreach(Transform Child in _waypointsParent)
+        {
+            _waypoints.Add(Child.gameObject);
+        }
     }
     private void ValidateProperties()
     {

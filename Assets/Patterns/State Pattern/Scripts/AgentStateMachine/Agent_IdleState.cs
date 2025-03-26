@@ -16,9 +16,10 @@ public class Agent_IdleState : AgentState
     #region STATE METHODS
     public override void EnterState()
     {
-        Debug.Log("Enter IDLE State");
-        _elapsedTime = 0.0f;
         Context.Agent_StateText = StateKey.ToString();
+
+        _elapsedTime = 0.0f;
+        
     }
     public override void UpdateState()
     {
@@ -28,7 +29,7 @@ public class Agent_IdleState : AgentState
 
     public override void ExitState()
     {
-        Debug.Log("Exiting IDLE State");
+
     }
 
     public override AgentStateMachine.EAgentState GetNextState()
