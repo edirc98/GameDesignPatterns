@@ -19,7 +19,7 @@ public class AsteroidSpawner : MonoBehaviour
 
         if(_elapsedTime >= spawnRate)
         {
-            float randomDeviation = Random.Range(-11.0f, 11.0f);
+            Vector3 randomDeviation = new Vector3 (Random.Range(-11.0f, 11.0f),0,0);
             //Manual INSTANCING
             //Vector3 asteroidPos = new Vector3(transform.position.x + randomDeviation, transform.position.y, transform.position.z);
             //Instantiate(asteroidPrefab, asteroidPos, Quaternion.identity, transform);
@@ -28,7 +28,7 @@ public class AsteroidSpawner : MonoBehaviour
             GameObject asteroid =  ObjectPool.Instance.GetPooledObject();
             if(asteroid != null)
             {
-                asteroid.transform.position = new Vector3(transform.position.x + randomDeviation, transform.position.y, transform.position.z);
+                asteroid.transform.position = transform.position + randomDeviation;
                 asteroid.SetActive(true);
             }
 

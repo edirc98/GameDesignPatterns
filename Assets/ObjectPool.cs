@@ -28,7 +28,7 @@ public class ObjectPool : MonoBehaviour
     }
     #endregion
     #region POOL LIST
-    private List<GameObject> pooledObjects;
+    [SerializeField] private List<GameObject> pooledObjects;
     #endregion
 
     private void Awake()
@@ -42,14 +42,20 @@ public class ObjectPool : MonoBehaviour
     }
 
     #region METHODS
+    private GameObject GeneratePoolObject()
+    {
+        GameObject poolObjInstance = Instantiate(poolObject, transform);
+        poolObjInstance.SetActive(false);
+        pooledObjects.Add(poolObjInstance);
+
+        return poolObjInstance;
+    }
     private void StartPool()
     {
         pooledObjects = new List<GameObject>();
         for(int i = 0; i < poolSize; i++)
         {
-            GameObject poolObjInstance = Instantiate(poolObject, transform);
-            poolObjInstance.SetActive(false);
-            pooledObjects.Add(poolObjInstance);
+            GeneratePoolObject();
         }
     }
 
@@ -61,6 +67,11 @@ public class ObjectPool : MonoBehaviour
             {
                 return pooledObjects[i];
             }
+        }
+        //If list is expandable, if there is no pooled object available create one and add it to the list
+        if (poolExpandable)
+        {
+            return GeneratePoolObject();
         }
         return null;
     }

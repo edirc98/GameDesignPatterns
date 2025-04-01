@@ -380,7 +380,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolObject: {fileID: 2932653434916192211, guid: 2110036f841f8174da00f4cd238fd7fe, type: 3}
   poolSize: 5
-  poolExpandable: 0
+  poolExpandable: 1
+  pooledObjects: []
 --- !u!4 &796548202
 Transform:
   m_ObjectHideFlags: 0
@@ -562,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd14f4356cf390640bc56432df80eb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 1
+  spawnRate: 0.5
 --- !u!4 &1019754254
 Transform:
   m_ObjectHideFlags: 0
