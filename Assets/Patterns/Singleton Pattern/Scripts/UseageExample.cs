@@ -6,6 +6,10 @@ public class UseageExample : MonoBehaviour
     void Start()
     {
         GetSingletonName();
+
+        //Using the generics
+        ManagerGeneric.Instance.AddScore(5);
+        Debug.Log("Using the generic: " + ManagerGeneric.Instance.Score);
     }
 
     void Update()
