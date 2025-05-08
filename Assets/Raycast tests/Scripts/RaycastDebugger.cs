@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-
+using UnityEngine.Serialization;
 
 
 [System.Serializable]
@@ -59,7 +59,7 @@ public class RaycastDebugVisual
     }
 
 
-    public void DarwRaycast()
+    public void DrawRaycast()
     {
         //MAIN RAY
         Gizmos.color = baseRayColor;
@@ -69,7 +69,7 @@ public class RaycastDebugVisual
         Gizmos.color = penetrationRayColor;
         Gizmos.DrawRay(hitPoint, hitDir * hitPenetrationDistance);
 
-        //HIT POINT SPEHERE
+        //HIT POINT SPHERE
         Gizmos.color = hitPointColor;
         Gizmos.DrawSphere(hitPoint, 0.1f);
 
@@ -83,18 +83,18 @@ public class RaycastDebugger : Singleton<RaycastDebugger>
 {
     #region VARIABLES
     [Header("Ray Visual Configuration")]
-    public bool AutoDeleteAfterTime = false;
+    public bool autoDeleteAfterTime = false;
     [Range(1.0f,10.0f)]
-    public float RayLifeTime;
+    public float rayLifeTime;
 
-    [Header("Ray Colors")]
-    public Color BaseRayColor = Color.yellow;
-    public Color PenetrationRayColor = Color.magenta;
-    public Color HitPointColor = Color.red;
-    public Color HitNormalColor = Color.blue;
+    [FormerlySerializedAs("BaseRayColor")] [Header("Ray Colors")]
+    public Color baseRayColor = Color.yellow;
+    public Color penetrationRayColor = Color.magenta;
+    public Color hitPointColor = Color.red;
+    public Color hitNormalColor = Color.blue;
 
     [Header("Stored Raycasts")]
-    private List<RaycastDebugVisual> raycastsDebugVisuals = new List<RaycastDebugVisual>();
+    private readonly List<RaycastDebugVisual> raycastsDebugVisuals = new List<RaycastDebugVisual>();
 
     #endregion
     #region UNITY METHODS
@@ -102,26 +102,23 @@ public class RaycastDebugger : Singleton<RaycastDebugger>
     {
         for (int i = raycastsDebugVisuals.Count - 1; i >= 0; i--)
         {
-            
             raycastsDebugVisuals[i].RayTick();
-            
             if (raycastsDebugVisuals[i].RayExpired)
             {
                 raycastsDebugVisuals.RemoveAt(i);
                 Debug.Log("Removed Ray");
             } 
         }
-        
     }
     #endregion
     #region CUSTOM METHODS
     public void AddRaycastVisualDebug(Vector3 RayOrigin, Vector3 RayDir, float RayDistance, Vector3 HitNormal, Vector3 HitPoint)
     {
         RaycastDebugVisual raycastVisual = new RaycastDebugVisual(RayOrigin, RayDir, RayDistance, HitNormal, HitPoint);
-        raycastVisual.SetRayVisualColors(BaseRayColor, PenetrationRayColor, HitPointColor, HitNormalColor);
-        if (AutoDeleteAfterTime)
+        raycastVisual.SetRayVisualColors(baseRayColor, penetrationRayColor, hitPointColor, hitNormalColor);
+        if (autoDeleteAfterTime)
         {
-            raycastVisual.LifeTime = RayLifeTime;
+            raycastVisual.LifeTime = rayLifeTime;
         }
         raycastsDebugVisuals.Add(raycastVisual);
     }
@@ -129,10 +126,10 @@ public class RaycastDebugger : Singleton<RaycastDebugger>
     public void AddRaycastVisualDebug(Vector3 RayOrigin, Vector3 RayDir, float RayDistance, float PenetrationDistance, Vector3 HitNormal, Vector3 HitPoint)
     {
         RaycastDebugVisual raycastVisual = new RaycastDebugVisual(RayOrigin, RayDir, RayDistance, PenetrationDistance, HitNormal, HitPoint);
-        raycastVisual.SetRayVisualColors(BaseRayColor, PenetrationRayColor, HitPointColor, HitNormalColor);
-        if (AutoDeleteAfterTime)
+        raycastVisual.SetRayVisualColors(baseRayColor, penetrationRayColor, hitPointColor, hitNormalColor);
+        if (autoDeleteAfterTime)
         {
-            raycastVisual.LifeTime = RayLifeTime;
+            raycastVisual.LifeTime = rayLifeTime;
         }
         raycastsDebugVisuals.Add(raycastVisual);
     }
@@ -147,7 +144,7 @@ public class RaycastDebugger : Singleton<RaycastDebugger>
     {
         foreach (RaycastDebugVisual raycastVisual in raycastsDebugVisuals)
         {
-            raycastVisual.DarwRaycast();
+            raycastVisual.DrawRaycast();
         }
 
     }
