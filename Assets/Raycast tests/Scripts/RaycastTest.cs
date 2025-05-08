@@ -66,7 +66,7 @@ public class RaycastTest : MonoBehaviour
                 //From final point after penetration raycast backguards to see if the penetration is completed
                 RaycastHit backHit;
                 Vector3 backOrigin = hit.point + Direction * PenetrationDistance;
-                if (Physics.Raycast(backOrigin, -Direction, out backHit, MaxDistacnce, layerMask))
+                if (Physics.Raycast(backOrigin, -Direction, out backHit, PenetrationDistance, layerMask))
                 {
                     RaycastDebugger.Instance.AddRaycastVisualDebug(backOrigin, -Direction, backHit.distance, backHit.normal, backHit.point);
                     CastRayWithPenetration(backOrigin, Direction, MaxDistacnce, PenetrationDistance, CurrentPenetrated);
