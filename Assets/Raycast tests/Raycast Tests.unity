@@ -496,8 +496,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AutoDeleteAfterTime: 0
-  RayLifeTime: 5
-  BaseRayColor: {r: 1, g: 0.1462264, b: 0.1462264, a: 1}
+  RayLifeTime: 4
+  BaseRayColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  PenetrationRayColor: {r: 1, g: 0, b: 1, a: 1}
+  HitPointColor: {r: 1, g: 0, b: 0, a: 1}
+  HitNormalColor: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &484963973
 GameObject:
   m_ObjectHideFlags: 0
