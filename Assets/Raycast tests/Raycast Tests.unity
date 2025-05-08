@@ -495,6 +495,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62cf0afcefa7f4996d01509cca9eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AutoDeleteAfterTime: 0
+  RayLifeTime: 5
+  BaseRayColor: {r: 1, g: 0.1462264, b: 0.1462264, a: 1}
 --- !u!1 &484963973
 GameObject:
   m_ObjectHideFlags: 0

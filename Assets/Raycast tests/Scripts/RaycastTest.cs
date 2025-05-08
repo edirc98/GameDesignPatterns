@@ -33,6 +33,11 @@ public class RaycastTest : MonoBehaviour
         {
             CastRayWithPenetration(transform.position, rayDir, RayDistance, maxPenetrationDistance, 0);
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            RaycastDebugger.Instance.ClearRaycastVisualDebugs();
+        }
     }
 
     private void CastRay(Vector3 Origin, Vector3 Direction, float MaxDistacnce)
